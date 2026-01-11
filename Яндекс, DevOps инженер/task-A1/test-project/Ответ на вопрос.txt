@@ -1,0 +1,15 @@
+Для того чтобы можно было изменять index.html не пересобирая образ, можно изменить файл docker-compose.yaml и потом изменять index.html бесконечно много раз, изменения будут видны после перезагрузки страницы в бразере
+
+Полный docker-compose.yaml будет таким:
+version: '3.8'
+
+services:
+  web:
+    build: .
+    image: my-web-app:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html:ro
+    container_name: my-web-app-container
+у него есть отличия от того который сделал я, дописана строка благодаря которой мы монтируем новый файл, изменяем index.html, сохраняем, переходим в браузер и обновляем страницу, изменения вступают в силу

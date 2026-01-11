@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    image: my-web-app:latest
+    ports:
+      - "8080:80"
+    container_name: my-web-app-container
